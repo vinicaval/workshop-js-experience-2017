@@ -7,7 +7,8 @@ describe('Repository listing', ()=>{
     describe('When calling getList', ()=>{
         it('should return more than one repository', ()=>{
             const repositoryList = new RepositoryList()
-            repositoryList.getList().length.should.be.greaterThan(0)
+            const list = await repositoryList.getList()
+            list.length.should.be.greaterThan(0)
         })
     })
 })
