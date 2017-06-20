@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Github Repos</title>
+    <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/css/materialize.min.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col s2">
+                <img src="https://octodex.github.com/images/codercat.jpg" width="200" class="responsive-img" alt="octocat" />
+            </div>
+            <div class="col s10">
+                <h1>Github Repos</h1>
+                Testando o comportamento da sua app com Mocha + Chai
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-field col s10 ">
+                <i class="material-icons prefix">account_circle</i>
+                <input id="txtSearch" type="text" />
+                <label for="search">Localize os repositórios dos usuários do github</label>
+            </div>
+            <div class="input-field col s2 ">
+                <a id="btnSearch" class="waves-effect waves-light btn grey darken-3">
+                    <i class="material-icons ">search</i>
+                </a>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col s12">
+                <ul id="repoList" class="collection with-header">
+                </ul>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
