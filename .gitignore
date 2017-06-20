@@ -1,5 +1,5 @@
 
-# Created by https://www.gitignore.io/api/code,node
+# Created by https://www.gitignore.io/api/jspm,code,node
 
 ### Code ###
 # Visual Studio Code - https://code.visualstudio.com/
@@ -7,6 +7,9 @@
 .vscode/
 tsconfig.json
 jsconfig.json
+
+### jspm ###
+jspm_packages
 
 ### Node ###
 # Logs
@@ -69,4 +72,6 @@ typings/
 .env
 
 
-# End of https://www.gitignore.io/api/code,node
+# End of https://www.gitignore.io/api/jspm,code,node
+
+public/build
