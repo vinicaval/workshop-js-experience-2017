@@ -1,34 +1,39 @@
 import jquery from 'jquery'
 import materialize from 'materialize-css'
-import RepositoryList from './repository-list'
+import RepositoryList from './repository.list'
+import template from './repository.template'
 
 export default function onInit(){
-    document.querySelector('#btnSearch').onclick = (e) =>{
+    document.querySelector('#btnSearch').onclick = (e) => {
+        cleanRepositoryList()
         searchRepositories(txtSearch.value)
     }
 }
 
-const searchRepositories = (name) =>{
-    const repositoryList = new RepositoryList(name)
+const cleanRepositoryList = () => {
     document.querySelector('#repoList').innerHTML = ""
-    repositoryList.getList()
-    .then((res) => {
-        res.data.map((item)=>{
-            document.querySelector('#repoList').innerHTML += getFilledTemplate(item)
-        })
-    })
-    .catch((err) => {
-        console.error(err)
+}
+
+const appendTemplateToRepositoryContainer = (template, item) => {
+    document.querySelector('#repoList').innerHTML += template(item)
+}
+
+const bindList = (list) => {
+    list.map((item) => {
+        appendTemplateToRepositoryContainer(template, item)
     })
 }
 
-const getFilledTemplate = (item)=>{
-    return `
-        <li class="collection-item">
-            <h5>${item.name}</h5>
-            <p>${item.description}</p>
-        </li>
-    `
+const searchRepositories = (name) => {
+    const repositoryList = new RepositoryList(name)
+    repositoryList
+        .getList()
+        .then((res) => {
+            bindList(res.data)
+        })
+        .catch((err) => {
+            console.error(err)
+        })
 }
 
 onInit()
