@@ -10,26 +10,26 @@ export default class Repository{
     }
     bindEvents(){
         this.searchButton.onclick = () => {
-            this.cleanRepositoryList()
+            this.cleanRepositoryContainer()
             this.searchRepositories(window.txtSearch.value)
         }
-    }
-    cleanRepositoryList(){
-        this.repositoryContainer.innerHTML = ""
-    }
-    appendTemplateToRepositoryContainer(template, item){
-        this.repositoryContainer.innerHTML += template(item)
     }
     bindList(list){
         list.map((item) => {
             this.appendTemplateToRepositoryContainer(template, item)
         })
     }
+    cleanRepositoryContainer(){
+        this.repositoryContainer.innerHTML = ""
+    }
+    appendTemplateToRepositoryContainer(template, item){
+        this.repositoryContainer.innerHTML += template(item)
+    }
     searchRepositories(name){
         this.list
             .getList(name)
             .then((res) => {
-                bindList(res.data)
+                this.bindList(res.data)
             })
             .catch((err) => {
                 console.error(err)
