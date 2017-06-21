@@ -3,7 +3,6 @@ import template from './repository.template'
 
 export default class Repository{
     constructor(window, list){
-        this.$ = window.document.querySelector
         this.list = list
         this.repositoryContainer = window.document.querySelector('#repoList')
         this.searchButton = window.document.querySelector('#btnSearch')
