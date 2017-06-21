@@ -10,11 +10,11 @@ export default class Repository{
     }
     bindEvents(){
         this.searchButton.onclick = () => {
-            this.cleanRepositoryList()
+            this.cleanRepositoryContainer()
             this.searchRepositories(window.txtSearch.value)
         }
     }
-    cleanRepositoryList(){
+    cleanRepositoryContainer(){
         this.repositoryContainer.innerHTML = ""
     }
     appendTemplateToRepositoryContainer(template, item){
@@ -29,7 +29,7 @@ export default class Repository{
         this.list
             .getList(name)
             .then((res) => {
-                bindList(res.data)
+                this.bindList(res.data)
             })
             .catch((err) => {
                 console.error(err)
