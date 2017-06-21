@@ -14,16 +14,16 @@ export default class Repository{
             this.searchRepositories(window.txtSearch.value)
         }
     }
+    bindList(list){
+        list.map((item) => {
+            this.appendTemplateToRepositoryContainer(template, item)
+        })
+    }
     cleanRepositoryContainer(){
         this.repositoryContainer.innerHTML = ""
     }
     appendTemplateToRepositoryContainer(template, item){
         this.repositoryContainer.innerHTML += template(item)
-    }
-    bindList(list){
-        list.map((item) => {
-            this.appendTemplateToRepositoryContainer(template, item)
-        })
     }
     searchRepositories(name){
         this.list
