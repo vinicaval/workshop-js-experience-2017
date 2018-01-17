@@ -5,11 +5,12 @@ import { JSDOM } from 'jsdom'
 import template from './repository.template'
 import Repository from './repository'
 import RepositoryList from './repository.list'
+import jquery from 'jquery'
 
 chai.should()
 chai.use(sinonChai)
 
-describe('Repository', () => {
+describe('Repository', () => { 
     describe('When calling cleanRepositoryList from repository', () => {
         it('should clean repository container', () => {
             const repositoryList = sinon.mock(RepositoryList)

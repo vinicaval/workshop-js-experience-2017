@@ -1,17 +1,18 @@
-
+import jquery from 'jquery'
 import template from './repository.template'
 
 export default class Repository{
     constructor(window, list){
+        let $ = jquery(window) 
         this.list = list
-        this.repositoryContainer = window.document.querySelector('#repoList')
-        this.searchButton = window.document.querySelector('#btnSearch')
+        this.repositoryContainer = $('#repoList')
+        this.searchButton = $('#btnSearch')
     }
     bindEvents(){
-        this.searchButton.onclick = () => {
+        this.searchButton.click(() => {
             this.cleanRepositoryContainer()
             this.searchRepositories(window.txtSearch.value)
-        }
+        })
     }
     bindList(list){
         list.map((item) => {
@@ -19,10 +20,10 @@ export default class Repository{
         })
     }
     cleanRepositoryContainer(){
-        this.repositoryContainer.innerHTML = ""
+        this.repositoryContainer.html('')
     }
     appendTemplateToRepositoryContainer(template, item){
-        this.repositoryContainer.innerHTML += template(item)
+        this.repositoryContainer.append(template(item))
     }
     searchRepositories(name){
         this.list
