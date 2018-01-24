@@ -16,18 +16,7 @@ describe('Repository', () => {
     })
     describe('When calling cleanRepositoryList from repository', () => {
         it('should clean repository container', () => {
-            const repositoryList = sinon.mock(RepositoryList)
-            const window = new JSDOM(`
-                <input id="txtSearch" type="text" />
-                <a id="btnSearch"></a>
-                <ul id="repoList">
-                    <div id="teste"></div>
-                </ul>
-            `).window;
-            Repository.__Rewire__('$', $(window))
-            const repository = new Repository(window, repositoryList)
-            repository.cleanRepositoryContainer()
-            window.document.querySelector('#repoList').innerHTML.should.be.empty
+  
         })
     })
     describe('When calling appendTemplateToRepositoryContainer from repository', () => {
