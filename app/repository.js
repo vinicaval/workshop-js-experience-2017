@@ -1,31 +1,31 @@
 import jquery from 'jquery'
 import template from './repository.template'
 
-export default class Repository{
-    constructor(window, list){
-        let $ = jquery(window) 
-        this.list = list
+export default class Repository {
+    constructor(window, list) {
+        let $ = jquery(window)
         this.repositoryContainer = $('#repoList')
         this.searchButton = $('#btnSearch')
+        this.list = list;
     }
-    bindEvents(){
+    bindEvents() {
         this.searchButton.click(() => {
             this.cleanRepositoryContainer()
             this.searchRepositories(window.txtSearch.value)
         })
     }
-    bindList(list){
+    bindList(list) {
         list.map((item) => {
             this.appendTemplateToRepositoryContainer(template, item)
         })
     }
-    cleanRepositoryContainer(){
+    cleanRepositoryContainer() {
         this.repositoryContainer.html('')
     }
-    appendTemplateToRepositoryContainer(template, item){
+    appendTemplateToRepositoryContainer(template, item) {
         this.repositoryContainer.append(template(item))
     }
-    searchRepositories(name){
+    searchRepositories(name) {
         this.list
             .getList(name)
             .then((res) => {
