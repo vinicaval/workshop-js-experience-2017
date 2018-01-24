@@ -1,9 +1,8 @@
-import jquery from 'jquery'
+import $ from 'jquery'
 import template from './repository.template'
 
 export default class Repository {
     constructor(window, list) {
-        let $ = jquery(window)
         this.repositoryContainer = $('#repoList')
         this.searchButton = $('#btnSearch')
         this.list = list;

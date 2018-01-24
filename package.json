@@ -6,8 +6,8 @@
   "scripts": {
     "build": "webpack",
     "start": "npm run build && webpack-dev-server --inline --hot",
-    "test": " mocha --compilers js:babel-core/register ./app/**/*.spec.js",
-    "test-watch": "mocha --watch --compilers js:babel-core/register ./app/**/*.spec.js "
+    "test": " mocha --compilers js:babel-core/register ./app/**/*.spec.js" ,
+    "test-watch": "mocha --watch --compilers js:babel-core/register ./app/**/*.spec.js  "
   },
   "author": "fábio damasceno",
   "license": "MIT",

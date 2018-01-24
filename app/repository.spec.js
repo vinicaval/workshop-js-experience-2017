@@ -5,25 +5,29 @@ import { JSDOM } from 'jsdom'
 import template from './repository.template'
 import Repository from './repository'
 import RepositoryList from './repository.list'
-// import jquery from 'jquery'
+import $ from 'jquery'
 
 chai.should()
 chai.use(sinonChai)
 
 describe('Repository', () => {
+    beforeEach(() => {
+        
+    })
     describe('When calling cleanRepositoryList from repository', () => {
         it('should clean repository container', () => {
             const repositoryList = sinon.mock(RepositoryList)
-            const domStub = new JSDOM(`
+            const window = new JSDOM(`
                 <input id="txtSearch" type="text" />
                 <a id="btnSearch"></a>
                 <ul id="repoList">
                     <div id="teste"></div>
                 </ul>
             `).window;
-            const repository = new Repository(domStub, repositoryList)
+            Repository.__Rewire__('$', $(window))
+            const repository = new Repository(window, repositoryList)
             repository.cleanRepositoryContainer()
-            domStub.document.querySelector('#repoList').innerHTML.should.be.empty
+            window.document.querySelector('#repoList').innerHTML.should.be.empty
         })
     })
     describe('When calling appendTemplateToRepositoryContainer from repository', () => {
@@ -31,15 +35,16 @@ describe('Repository', () => {
             const repositoryList = sinon.spy(RepositoryList)
             const templateStub = sinon.stub()
             templateStub.withArgs('teste').returns('<div>teste</div>')
-            const domStub = new JSDOM(`
+            const window = new JSDOM(`
                 <!DOCTYPE html>
                 <input id="txtSearch" type="text" />
                 <a id="btnSearch"></a>
                 <ul id="repoList"></ul>
             `).window;
-            const repository = new Repository(domStub, repositoryList)
+            Repository.__Rewire__('$', $(window))
+            const repository = new Repository(window, repositoryList)
             repository.appendTemplateToRepositoryContainer(templateStub, 'teste')
-            domStub.document.querySelector('#repoList').innerHTML.should.be.equal('<div>teste</div>')
+            window.document.querySelector('#repoList').innerHTML.should.be.equal('<div>teste</div>')
         })
     })
     describe('When calling searchRepositories from repository', () => {
@@ -47,13 +52,15 @@ describe('Repository', () => {
             const repositoryList = {
                 getList: sinon.spy(new RepositoryList().getList)
             }
-            const domStub = new JSDOM(`
+            const window = new JSDOM(`
                 <!DOCTYPE html>
                 <input id="txtSearch" type="text" />
                 <a id="btnSearch"></a>
                 <ul id="repoList"></ul>
             `).window;
-            const repository = new Repository(domStub, repositoryList)
+            Repository.__Rewire__('$', $(window))
+
+            const repository = new Repository(window, repositoryList)
             repository.searchRepositories('teste')
             repositoryList.getList.should.have.been.calledWith('teste')
         })
